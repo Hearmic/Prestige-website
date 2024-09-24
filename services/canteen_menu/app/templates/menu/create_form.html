@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Созание</title>
+    </head>
+    <body>
+        <form method = "POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="Submit"> Создать </button>
+        </form>
+        <a href="{% url "menu:create_set" %}">Назад</a>
+    </body>
+</html>

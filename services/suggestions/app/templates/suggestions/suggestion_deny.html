@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <h1>Deny Suggestion</h1>
+  <p>Are you sure you want to deny this suggestion?</p>
+  <form method="post" action ="{% url "suggestions:deny_suggestion" suggestion.id %}">
+    {% csrf_token %}
+    {{ denial_reason_form.as_p }}  
+    <button type="submit">Deny</button>
+  </form>
+{% endblock content %}

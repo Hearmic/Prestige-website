@@ -1,0 +1,103 @@
+from django.db import models
+from users.models import User
+
+class Lessons(models.Model):
+    lesson_type = models.CharField(max_length=20)
+    teacher = models.ForeignKey(User, related_name='lesson_teacher', on_delete = models.CASCADE)
+    classroom = models.CharField(max_length=20)
+    taught_from = models.IntegerField(default=1)
+    def __str__(self):
+        return self.lesson_type + ' ' + self.teacher.first_name + " " + self.teacher.surname
+
+class school_schedule (models.Model):
+    grade = models.IntegerField()
+    litera = models.CharField(max_length=1)
+    group = models.IntegerField(default= 1)
+    # Понедельник
+    monday_lesson1 = models.ForeignKey(Lessons, related_name='monday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson2 = models.ForeignKey(Lessons, related_name='monday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson3 = models.ForeignKey(Lessons, related_name='monday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson4 = models.ForeignKey(Lessons, related_name='monday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson5 = models.ForeignKey(Lessons, related_name='monday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson6 = models.ForeignKey(Lessons, related_name='monday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson7 = models.ForeignKey(Lessons, related_name='monday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson8 = models.ForeignKey(Lessons, related_name='monday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    monday_lesson9 = models.ForeignKey(Lessons, related_name='monday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    # Вторник
+    tuesday_lesson1 = models.ForeignKey(Lessons, related_name='tuesday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson2 = models.ForeignKey(Lessons, related_name='tuesday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson3 = models.ForeignKey(Lessons, related_name='tuesday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson4 = models.ForeignKey(Lessons, related_name='tuesday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson5 = models.ForeignKey(Lessons, related_name='tuesday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson6 = models.ForeignKey(Lessons, related_name='tuesday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson7 = models.ForeignKey(Lessons, related_name='tuesday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson8= models.ForeignKey(Lessons, related_name='tuesday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    tuesday_lesson9 = models.ForeignKey(Lessons, related_name='tuesday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    #Среда
+    wednesday_lesson1 = models.ForeignKey(Lessons, related_name='wednesday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson2 = models.ForeignKey(Lessons, related_name='wednesday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson3 = models.ForeignKey(Lessons, related_name='wednesday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson4 = models.ForeignKey(Lessons, related_name='wednesday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson5 = models.ForeignKey(Lessons, related_name='wednesday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson6 = models.ForeignKey(Lessons, related_name='wednesday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson7 = models.ForeignKey(Lessons, related_name='wednesday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson8 = models.ForeignKey(Lessons, related_name='wednesday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    wednesday_lesson9 = models.ForeignKey(Lessons, related_name='wednesday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    #Четверг
+    thursday_lesson1 = models.ForeignKey(Lessons, related_name='thursday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson2 = models.ForeignKey(Lessons, related_name='thursday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson3 = models.ForeignKey(Lessons, related_name='thursday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson4 = models.ForeignKey(Lessons, related_name='thursday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson5 = models.ForeignKey(Lessons, related_name='thursday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson6 = models.ForeignKey(Lessons, related_name='thursday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson7 = models.ForeignKey(Lessons, related_name='thursday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson8 = models.ForeignKey(Lessons, related_name='thursday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    thursday_lesson9 = models.ForeignKey(Lessons, related_name='thursday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    #Пятница
+    friday_lesson1 = models.ForeignKey(Lessons, related_name='friday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson2 = models.ForeignKey(Lessons, related_name='friday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson3 = models.ForeignKey(Lessons, related_name='friday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson4 = models.ForeignKey(Lessons, related_name='friday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson5 = models.ForeignKey(Lessons, related_name='friday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson6 = models.ForeignKey(Lessons, related_name='friday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson7 = models.ForeignKey(Lessons, related_name='friday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson8 = models.ForeignKey(Lessons, related_name='friday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    friday_lesson9 = models.ForeignKey(Lessons, related_name='friday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    #Суббота
+    saturday_lesson1 = models.ForeignKey(Lessons, related_name='saturday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson2 = models.ForeignKey(Lessons, related_name='saturday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson3 = models.ForeignKey(Lessons, related_name='saturday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson4 = models.ForeignKey(Lessons, related_name='saturday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson5 = models.ForeignKey(Lessons, related_name='saturday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson6 = models.ForeignKey(Lessons, related_name='saturday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson7 = models.ForeignKey(Lessons, related_name='saturday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson8 = models.ForeignKey(Lessons, related_name='saturday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    saturday_lesson9 = models.ForeignKey(Lessons, related_name='saturday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+    #Воскресенье
+    sunday_lesson1 = models.ForeignKey(Lessons, related_name='sunday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson2 = models.ForeignKey(Lessons, related_name='sunday_lesson2',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson3 = models.ForeignKey(Lessons, related_name='sunday_lesson3',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson4 = models.ForeignKey(Lessons, related_name='sunday_lesson4',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson5 = models.ForeignKey(Lessons, related_name='sunday_lesson5',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson6 = models.ForeignKey(Lessons, related_name='sunday_lesson6',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson7 = models.ForeignKey(Lessons, related_name='sunday_lesson7',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson8 = models.ForeignKey(Lessons, related_name='sunday_lesson8',null=True, blank=True, on_delete = models.CASCADE)
+    sunday_lesson9 = models.ForeignKey(Lessons, related_name='sunday_lesson9',null=True, blank=True, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return str(self.grade) + '"' + self.litera + '"'
+
+class event(models.Model):
+    starts_on = models.DateField()
+    ends_on = models.DateField(blank=True,null=True)
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+    picture = models.ImageField()
+
+class club_lesson(models.Model):
+    name = models.CharField(max_length=20)
+    club = models.CharField(max_length=20)
+    teacher = models.ForeignKey(User, related_name='club_teacher',null=True, blank=True, on_delete = models.CASCADE)
+    classrom = models.CharField(max_length=20)
+    day = models.CharField(max_length=20)
+    lesson = models.IntegerField()

@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<head>
+    {% block title %} {{ material.title }} {% endblock title %}
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "knowledge_base/questionnaire_styles.css" %}">
+    {% endblock %}
+    <script src="{% static "knowledge_base/questionnaire_script.js" %}"></script>
+</head>
+<body>
+    {% block content %}
+        <h1>{{ material.title }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for question in material.questions.all %}
+            <div>
+                <p>{{ question.text }}</p>
+                {% for answer in question.answers.all %}
+                <input type="radio" name="{{ question.id }}" value="{{ answer.id }}">{{ answer.text }}<br>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit">Отправить</button>
+        </form>
+    {% endblock content %}
+</body>

@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "schedules/lessons.css" %}">
+    </head>
+    <body>
+        {% block content %}
+            <h1>Создание уроков</h1>
+            <div class="all-container">
+                <div class="creation-form">
+                    <form method = "POST">
+                        {% csrf_token %}
+                        <p>Предмет: {{ form.lesson_type }}</p>
+                        <p>Преподаватель: {{ form.teacher }}</p>
+                        <p>Кабинет: {{ form.classroom }}</p>
+                        <p>Преподаеться с {{ form.taught_from }} класса </p>
+                        <button type="submit" class="btn"> Сохранить расписание </button>
+                    </form>
+                    <a href="{% url "schedules:main" %}" class="btn">Назад</a>
+                </div>
+                <div class="list">
+                    {% for lesson in lessons %}
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="line">
+                                    <h3>{{ lesson.lesson_type }}</h3>
+                                </div>
+                                <div class="line">
+                                    <p>{{ lesson.teacher }}</p>
+                                    <p>{{ lesson.classrom }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endblock content %}
+        {% block scripts %}
+        <script>
+            $("#id_lesson_type").select2();
+            $("#id_teacher").select2();
+        </script>
+        {% endblock scripts %}
+    </body>
+</html>

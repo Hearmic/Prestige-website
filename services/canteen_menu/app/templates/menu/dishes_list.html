@@ -1,0 +1,158 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+<html>
+    <head>
+        {% block title %} Список блюд {% endblock title %}
+        {% block stylesheet %}<link rel="stylesheet" href= "{% static 'canteen_menu/DishListStyles.css' %}">{% endblock %}
+        
+    </head>
+    <body>
+        {% block content %}
+            <a href="{% url "menu:create_set" %}" class="btn">Новый набор</a>
+            <a href="{% url "menu:create_dish" %}" class="btn">Новое блюдо</a>
+            <a href="{% url "menu:create_drink" %}" class="btn">Новый напиток</a>
+            <h1>Список блюд</h1>
+            <div class="list-container">
+                <div class="breakfast">
+                <h2>НА завтрак:</h2>
+                 
+                <h3>Наборы:</h3>
+                  <div class="sets">
+                        {% for set in breakfast_mealsets %}
+                     <div class="card">
+                        {{ set.name }}
+                        <p>Блюда:</p>
+                            {{ set.meals }}
+                        <p>Напитки:</p>
+                            {{ set.drinks }}
+                        </div>
+                        {% endfor %}
+                  </div>
+                  
+                <h3>Блюда:</h3>
+                  <div class="dishes">
+                    
+                        {% for dish in breakfast_dishes %}
+                        <div class="card">
+                            {{ dish.name }}
+                            {% if not dish.possible_allergies.name == None %}
+                                <p>{{ dish.possible_allergies.name }}</p>
+                            {% else %}
+                                <p>Нет возможных аллергий</p>
+                            {% endif %}
+                                <p>Энергетическая ценность:</h>
+                                <p>{{ dish.callories }}</p>
+                    </div>
+                        {% endfor %}
+                    
+                    </div>
+                    
+                    <h3>Напитки:</h3>
+                    <div class="drinks">
+                    
+                        {% for drink in drinks %}
+                            <div class="card">
+                                {{ drink.title }}
+                                {{ drink.possible_allergies }}
+                                {{ drink.callories }}
+                            </div>
+                        {% endfor %}
+                </div>
+               </div>
+                <div class="lunch">
+                    <h2>На обед</h2>
+                  
+                    <h3>Наборы:</h3>
+                    <div class="sets">
+                        {% for set in breakfast_mealsets %}
+                      <div class="card">
+                        {{ set.name }}
+                        <p>Блюда:</p>
+                            {{ set.meals }}
+                        <p>Напитки:</p>
+                            {{ set.drinks }}
+                        </div>
+                        {% endfor %}
+                   </div>
+                  
+                    <h3>Блюда:</h3>
+                    <div class="dishes">
+                    
+                        {% for dish in lunch_dishes %}
+                      <div class="card">
+                        {{ dish.name }}
+                        {% if not dish.possible_allergies.name == None %}
+                            <p>{{ dish.possible_allergies.name }}</p>
+                        {% else %}
+                            <p>Нет возможных аллергий</p>
+                        {% endif %}
+                            <h3>Энергетическая ценность:</h3>
+                            <p>{{ dish.callories }}</p>
+                        </div>
+                        {% endfor %}
+                    
+                    </div>
+                    
+                    <h3>Напитки:</h3>
+                    <div class="drinks">
+                    
+                        {% for drink in drinks %}
+                            <div class="card">
+                                {{ drink.title }}
+                                {{ drink.possible_allergies }}
+                                {{ drink.callories }}
+                            </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+               </div>
+                <div class="dinner">
+                    <h2>На полдник:</h2>
+                    <h3>Наборы:</h3>
+                  <div class="sets">
+                   
+                        {% for set in breakfast_mealsets %}
+                      <div class="card">
+                        {{ set.name }}
+                        <p>Блюда:</p>
+                            {{ set.meals }}
+                        <p>Напитки:</p>
+                            {{ set.drinks }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                  
+                    <h3>Блюда:</h3>
+                  <div class="dishes">
+                        {% for dish in dinner_dishes %}
+                      <div class="card">
+                        {{ dish.name }}
+                        {% if not dish.possible_allergies.name == None %}
+                            <p>{{ dish.possible_allergies.name }}</p>
+                        {% else %}
+                            <p>Нет возможных аллергий</p>
+                        {% endif %}
+                            <h3>Энергетическая ценность:</h3>
+                            <p>{{ dish.callories }}</p>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                    
+                    <h3>Напитки:</h3>
+                    <div class="drinks">
+                        {% for drink in dinner_drinks %}
+                            <div class="card">
+                                {{ drink.title }}
+                                {{ drink.possible_allergies }}
+                                {{ drink.callories }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endblock content %}
+    </body>
+</html>

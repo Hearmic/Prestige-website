@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} Предложения не прожедшие модерацию {% endblock %}
+
+{% block content %}
+<a href="{% url "suggestions:suggestion_list" %}">Вернуться на страницу предложений</a>
+<h1>Предложения не прошедшие модерацию: </h1>
+<ul>
+  {% for suggestion in suggestions %}
+    {% if request.user.is_staff%}
+      <li>
+        <h1>{{ suggestion.title }}</h1>
+      </li>
+      <p>{{ suggestion.description }}</p>
+      <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}">Подробнее</a>
+    {% endif %}
+  {% endfor %}
+  {% if not suggestions %}
+    <p>Нет предложений не прошедших модерацию</p>
+  {% endif %}
+
+<h1>Отклоненные предложения</h1>
+  {% for suggestion in denied_suggestions %}
+    {% if request.user.is_staff%}
+      <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}" >
+        <div class="suggestion-card">
+          <div class="card-content">
+            <h3>{{ suggestion.title }}</h3>
+            <p>{{ suggestion.description}}</p>
+          </div> 
+          <div class="vote-counts"> 
+                <p>За: {{ suggestion.votes_for }} </p>
+                <p>Против: {{ suggestion.votes_against }} </p>
+          </div>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+  {% if not denied_suggestions %}
+    <p>Нет отклоненных предложений</p>
+  {% endif %}
+</ul>
+{% endblock content %}

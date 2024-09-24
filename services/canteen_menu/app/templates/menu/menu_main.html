@@ -1,0 +1,257 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+<html>
+<head>
+  {% block title %}Weekly Menu{% endblock title %} 
+</head>
+<body>
+  {% block content %}
+  {% if request.user|has_group:canteen_worker %}
+    <a href="{% url "menu:menu_list" %}" class='btn'> Добавить новое меню</a>
+    <a href="{% url "menu:dishes_list" %}" class='btn'> Cписок всех блюд</a>
+    <a href="{% url "menu:dishes_list" %}" class='btn'> Добавить новое блюдо</a>
+  {% endif %}
+  {% if menu %}
+    <h1>Weekly Menu - {{ menu.starts_on }} to {{ menu.ends_on }}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Понедельник</th>
+          <th>Вторник</th>
+          <th>Среда</th>
+          <th>Четверг</th>
+          <th>Пятница</th>
+          <th>Суббота</th>
+          <th>Воскресенье</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Завтрак</th>
+          <td>
+            <ul>
+              {% for meal in menu.monday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.monday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li> 
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.tuesday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.tuesday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.wednesday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.wednesday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.thursday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.thursday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.friday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.friday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.saturday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.saturday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.sunday_breakfast.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.sunday_breakfast.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          </tr>
+        <tr>
+          <th>Обед</th>
+          <td>
+            <ul>
+              {% for meal in menu.monday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.monday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.tuesday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.tuesday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.wednesday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.wednesday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.thursday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.thursday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.friday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.friday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.saturday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.saturday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.sunday_lunch.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.sunday_lunch.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Полдник</th>
+          <td>
+            <ul>
+              {% for meal in menu.monday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.monday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.tuesday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.tuesday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.wednesday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.wednesday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.thursday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.thursday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.friday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.friday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.saturday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.saturday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for meal in menu.sunday_dinner.meals.all %}
+                <li>{{ meal.name }}</li>
+              {% endfor %}
+              {% for drink in menu.sunday_dinner.drinks.all %}
+                <li>{{ drink.name }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>На эту неделю нет меню</p>
+  {% endif %}
+  {% endblock content %}
+</body>
+</html>

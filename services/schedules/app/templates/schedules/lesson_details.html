@@ -1,0 +1,10 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<h1>Детали урока</h1>
+<p>Название: {{ lesson.lesson_type }}</p>
+<p>Учитель: {{ lesson.teacher }}</p>
+<p>Кабинет: {{ lesson.classroom }}</p>
+<p>Преподается с {{ lesson.taught_from }} класса</p>
+<a href="javascript:history.back()" class="btn">Назад</a>
+{% endblock content %}

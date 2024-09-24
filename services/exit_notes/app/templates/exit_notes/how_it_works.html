@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %} 
+
+<html>
+  <head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "exit-notes/how-it-works.css" %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    {% endblock stylesheet %}
+  </head>
+  <body>
+    {% block content %}
+    <div class='msg-container'>
+        <h1>Как это работает?</h1>
+        <div class="text-container">
+            {% if request.user|has_group:students %}
+            <p><span class='numbers'>1.</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>2.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>3.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>4.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            {% endif %}
+            {% if request.user|has_group:teachers %}
+            <p><span class='numbers'>1.</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>2.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>3.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>4.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            {% endif %}
+            {% if request.user|has_group:parents %}
+            <p><span class='numbers'>1.</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>2.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>3.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            <p><span class='numbers'>4.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, blanditiis! Odio consequatur illum, exercitationem autem iste ex a assumenda rem omnis. Officiis vel eveniet exercitationem omnis reiciendis! Consequuntur, autem est.</p>
+            {% endif %}
+        </div>
+      <div class="btn-container">
+        <a href="{% url "exit_notes:exit_notes" %}" class="btn">Назад</a>
+      </div>
+    </div> 
+    {% endblock content %}
+  </body>
+</html>

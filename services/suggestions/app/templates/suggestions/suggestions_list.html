@@ -1,0 +1,63 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %} Список предложений {% endblock %}
+  {% block stylesheet %}
+    <link rel="stylesheet" href= "{% static 'suggestions/styles.css' %}">
+  {% endblock  %}
+</head>
+
+<body>
+  {% block content %}
+  
+    {% if request.user.is_authenticated %}
+    <div class="top-buttons">
+      
+      <a href=" {% url "suggestions:my_suggestions" %} " class = "btn">Мои предложения</a>
+      {% if request.user.is_staff %}
+        <a href="{% url 'suggestions:unmoderated_suggestion_list' %}" class="btn">Перейти на страницу модерации</a>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <h1 class="title">Заголовок страницы</h1>
+    <p class="inform">Здесь отображаются предложения от всех. 
+      Вы можете проголосовать за или против. Каждый голос "за" приблежает предложение к выполнению.
+      </p>
+      <p class="call-to-action">
+        Не нашли нужного решения?
+      </p>
+      <a href="{% url 'suggestions:create_suggestion' %}" class="call-to-action-btn">
+        Создайте свое предложение!
+      </a> 
+    {% if not request.user.is_authenticated %}
+      <p class="login_context">Контент на сайте не доступен для сторонних пользователей</p>
+      <div class="login_button">
+        <a href="{% url 'users:login' %}"> Войти </a>
+      </div>
+    {% endif %} 
+    <div class="card-container">
+        {% for suggestion in suggestions %}
+        <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}" >
+            <div class="suggestion-card">
+              <div class="card-content">
+                <h3>{{ suggestion.title }}</h3>
+                <p>{{suggestion.description}}</p>
+              </div> 
+              <div class="vote-counts"> 
+                    <p>За: {{ suggestion.votes_for }} </p>
+                    <p>Против: {{ suggestion.votes_against }} </p>
+              </div>
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+  {% endblock content %}
+</body>
+
+</html>

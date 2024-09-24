@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% load static %}
+<html>
+    <head>
+        {% block stylesheet %}
+            <link rel="stylesheet" href="{% static "knowledge_base/create_material.css" %}">
+        {% endblock stylesheet %}
+    </head>
+    <body>
+        {% block content %}
+        <h1>Создание нового материала</h1>
+        <form action="{% url 'knowledge_base:create_material' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Создать</button>
+        </form>
+        {% endblock content %}
+    </body>
+</html>

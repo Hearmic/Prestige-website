@@ -1,0 +1,177 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+<head>
+    {% block title %} Расписания {% endblock title %}
+    {% block stylesheet %}<link href="{% static "schedules/main.css" %}" rel="stylesheet">{% endblock stylesheet %}
+</head>
+<body>
+  {% block content %}
+    <h1> Heading Heading</h1>
+    {% if request.user|has_group:admin %}
+      <div class="button-container">
+        <a href="{% url "schedules:create_schedule" %}" class="btn">Добавить расписание</a>
+        <a href="{% url "schedules:create_lesson" %}" class="btn">Добавить урок</a>
+      </div>
+    {% endif %}
+    <div class="all-container">
+      <div class="school-schedule">
+        <h2>Расписания уроков</h2>
+          <table>
+            <tr>
+              <th>1</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 1 %} <a href="{% url 'schedules:schedule_detail' grade=1 litera='З' %}">З</a> {% endif %}{% endfor %}</td> 
+            </tr>
+            <tr>
+              <th>2</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 2 %} <a href="{% url 'schedules:schedule_detail' grade=2 litera='З' %}">З</a> {% endif %}{% endfor %}</td> 
+            </tr>
+            <tr>
+              <th>3</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 3 %} <a href="{% url 'schedules:schedule_detail' grade=3 litera='З' %}">З</a> {% endif %}{% endfor %}</td>   
+            </tr>
+            <tr>
+              <th>4</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 4 %} <a href="{% url 'schedules:schedule_detail' grade=4 litera='З' %}">З</a> {% endif %}{% endfor %}</td>    
+            </tr>
+            <tr>
+              <th>5</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 5 %} <a href="{% url 'schedules:schedule_detail' grade=5 litera='З' %}">З</a> {% endif %}{% endfor %}</td>    
+            </tr>
+            <tr>
+              <th>6</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 6 %} <a href="{% url 'schedules:schedule_detail' grade=6 litera='З' %}">З</a> {% endif %}{% endfor %}</td>  
+            </tr>
+            <tr>
+              <th>7</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 7 %} <a href="{% url 'schedules:schedule_detail' grade=7 litera='З' %}">З</a> {% endif %}{% endfor %}</td>   
+            </tr>
+            <tr>
+              <th>8</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 8 %} <a href="{% url 'schedules:schedule_detail' grade=8 litera='З' %}">З</a> {% endif %}{% endfor %}</td>    
+            </tr>
+            <tr>
+              <th>9</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 9 %} <a href="{% url 'schedules:schedule_detail' grade=9 litera='З' %}">З</a> {% endif %}{% endfor %}</td>  
+            </tr>
+            <tr>
+              <th>10</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 10 %} <a href="{% url 'schedules:schedule_detail' grade=10 litera='З' %}">З</a> {% endif %}{% endfor %}</td>    
+            </tr>
+            <tr>
+              <th>11</th>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'А' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='А' %}">А</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Б' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='Б' %}">Б</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'В' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='В' %}">В</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Г' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='Г' %}">Г</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Д' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='Д' %}">Д</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Е' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='Е' %}">Е</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'Ж' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='Ж' %}">Ж</a> {% endif %}{% endfor %}</td>
+              <td> {% for schedule in schedules %}{% if schedule.litera == 'З' and schedule.grade == 11 %} <a href="{% url 'schedules:schedule_detail' grade=11 litera='З' %}">З</a> {% endif %}{% endfor %}</td>   
+            </tr>
+          </table>
+      </div>
+        <div class="clubs_schedule">
+            <h2>Расписания кружков</h2>
+            <div class="clubs-list">
+                <div class="card">
+                    <p>Название кружка</h>
+                </div>
+            </div>
+        </div>
+        <div class="school_events">
+            <h2>Последние события</h2>
+            <div class="events_list">
+                <div class="card">
+                    <h3>heading</h3>
+                    <p>info</p>
+                </div>
+                <div class="card">
+                    <h3>heading</h3>
+                    <p>info</p>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
+        {% block scripts %}
+        <script>
+          const tds = document.querySelectorAll('td');
+          tds.forEach(td => {
+            if (td.querySelector('a')) {
+              td.classList.add('td-link'); // Add a class for styling
+            }
+          });
+        </script>
+        {% endblock scripts %}
+  </body>
+</html>

@@ -1,0 +1,50 @@
+{% load static %}<!--Это файл для всего, что будет показываться на каждой или многитх страницах> </!-->
+{% load custom_tags %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "{% static 'index/styles.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {% block stylesheet %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/Logo.png' %}">
+    
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <nav>
+        <div class="nav-content">
+        <div class="logo"> 
+            <a href="/home"> 
+                <img src="{% static 'images/Logo.png' %}">
+            </a>
+        </div class="links">
+            <ul class="nav-links">
+                <li><a href="{% url "main:home" %}">На главную</a></li>
+                <li><a href="{% url "users:logout" %}">Выйти</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn">Навигация</button>
+                    <div class="dropdown-content">
+                        <a href="{% url "schedules:main" %}">Расписания</a>
+                        <a href="{% url "suggestions:suggestion_list" %}">Предложения</a>
+                        <a href="https://kundelik.kz/userfeed">Дневник</a>
+                    </div>
+                </div>
+                {% if request.user.is_superuser%}<li><a href="/admin">Админка</a></li>{% endif %}
+            </ul>
+        </div>
+</nav>
+{% endif %}
+<div class="container">
+    {% block content %}
+    {% endblock%}    
+</div>
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+</html>

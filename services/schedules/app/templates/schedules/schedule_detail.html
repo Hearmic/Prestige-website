@@ -1,0 +1,276 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<html>
+<head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "schedules/schedule_details.css" %}">
+    {% endblock stylesheet %}
+</head>s
+<body>
+    {% block content %}
+    <h1>Расписание уроков</h1>
+    <h3>Класс: {{ schedule.grade }}"{{ schedule.litera }}"</h3>
+    <div class="table-container">
+        {% if schedule.grade > 4 %}
+        <table>
+            <tr>
+                <th>Время</th>
+                <th>№</th>
+                <th>Понедельник</th>
+                <th>Вторник</th>
+                <th>Среда</th>
+                <th>Четверг</th>
+                <th>Пятница</th>
+                <th>Суббота</th>
+                <th>Воскреcенье</th>
+            </tr>
+            <tr>
+                <th>8:00-8:40</th>
+                <td class="number">1</td>
+                <td>{% if schedule.monday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson1.id %}">{{ schedule.monday_lesson1.lesson_type }}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson1.id %}">{{ schedule.tuesday_lesson1.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson1.id %}">{{ schedule.wednesday_lesson1.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson1.id %}">{{ schedule.thursday_lesson1.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson1.id %}">{{ schedule.friday_lesson1.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson1.id %}">{{ schedule.saturday_lesson1.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson1 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson1.id %}">{{ schedule.sunday_lesson1.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>8:40-9:25</th>
+                <td class="number">-</td>
+                <td colspan = "7" class='breakfast'>Завтрак</td>
+            </tr>
+            <tr>
+                <th>9:25-10:05</th>
+                <td class="number">2</td>
+                <td>{% if schedule.monday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson2.id %}">{{ schedule.monday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson2.id %}">{{ schedule.tuesday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson2.id %}">{{ schedule.wednesday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson2.id %}">{{ schedule.thursday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson2.id %}">{{ schedule.friday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson2.id %}">{{ schedule.saturday_lesson2.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson2 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson2.id %}">{{ schedule.sunday_lesson2.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>10:10-10:50</th>
+                <td class="number">3</td>
+                <td>{% if schedule.monday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson3.id %}">{{ schedule.monday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson3.id %}">{{ schedule.tuesday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson3.id %}">{{ schedule.wednesday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson3.id %}">{{ schedule.thursday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson3.id %}">{{ schedule.friday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson3.id %}">{{ schedule.saturday_lesson3.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson3 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson3.id %}">{{ schedule.sunday_lesson3.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>10:55-11:35</th>
+                <td class="number">4</td>
+                <td>{% if schedule.monday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson4.id %}">{{ schedule.monday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson4.id %}">{{ schedule.tuesday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson4.id %}">{{ schedule.wednesday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson4.id %}">{{ schedule.thursday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson4.id %}">{{ schedule.friday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson4.id %}">{{ schedule.saturday_lesson4.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson4 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson4.id %}">{{ schedule.sunday_lesson4.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>11:40-12:20</th>
+                <td class="number">5</td>
+                <td>{% if schedule.monday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson5.id %}">{{ schedule.monday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson5.id %}">{{ schedule.tuesday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson5.id %}">{{ schedule.wednesday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson5.id %}">{{ schedule.thursday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson5.id %}">{{ schedule.friday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson5.id %}">{{ schedule.saturday_lesson5.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson5 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson5.id %}">{{ schedule.sunday_lesson5.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>12:25-13:05</th>
+                <td class="number">6</td>
+                <td>{% if schedule.monday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson6.id %}">{{ schedule.monday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson6.id %}">{{ schedule.tuesday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson6.id %}">{{ schedule.wednesday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson6.id %}">{{ schedule.thursday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson6.id %}">{{ schedule.friday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson6.id %}">{{ schedule.saturday_lesson6.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson6 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson6.id %}">{{ schedule.sunday_lesson6.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>13:05-13:55</th>
+                <td class="number">-</td>
+                <td colspan = "7" class='breakfast'> Обед </td>
+            </tr>      
+            <tr>
+                <th>13:55-14:35</th>
+                <td class="number">7</td>
+                <td>{% if schedule.monday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson7.id %}">{{ schedule.monday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson7%}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson7.id %}">{{ schedule.tuesday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson7.id %}">{{ schedule.wednesday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson7.id %}">{{ schedule.thursday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson7.id %}">{{ schedule.friday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson7.id %}">{{ schedule.saturday_lesson7.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson7 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson7.id %}">{{ schedule.sunday_lesson7.lesson_type}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>14:40-15:20</th>
+                <td class="number">8</td>
+                <td>{% if schedule.monday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson8.id %}">{{ schedule.monday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson8.id %}">{{ schedule.tuesday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson8.id %}">{{ schedule.wednesday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson8.id %}">{{ schedule.thursday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson8.id %}">{{ schedule.friday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson8.id %}">{{ schedule.saturday_lesson8.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson8 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson8.id %}">{{ schedule.sunday_lesson8.lesson_type}}</a>{% endif %}</td>
+            </tr>     
+            <tr>
+                <th>15:25-16:05</th>
+                <td class="number">9</td>
+                <td>{% if schedule.monday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.monday_lesson9.id %}">{{ schedule.monday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.tuesday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.tuesday_lesson9.id %}">{{ schedule.tuesday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.wednesday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.wednesday_lesson9.id %}">{{ schedule.wednesday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.thursday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.thursday_lesson9.id %}">{{ schedule.thursday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.friday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.friday_lesson9.id %}">{{ schedule.friday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.saturday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.saturday_lesson9.id %}">{{ schedule.saturday_lesson9.lesson_type}}</a>{% endif %}</td>
+                <td>{% if schedule.sunday_lesson9 %}<a href="{% url "schedules:lesson_details" schedule.sunday_lesson9.id %}">{{ schedule.sunday_lesson9.lesson_type}}</a>{% endif %}</td>
+            </tr>
+        </table>
+    {% else %}
+    <table>
+        <tr>
+            <th>Время</th>
+            <th>№</th>
+            <th>Понедельник</th>
+            <th>Вторник</th>
+            <th>Среда</th>
+            <th>Четверг</th>
+            <th>Пятница</th>
+            <th>Суббота</th>
+            <th>Воскреcенье</th>
+        </tr>
+        <tr>
+            <th>8:00-8:40</th>
+            <td class="number">-</td>
+            <td colspan = "7" class='breakfast'>Завтрак</td>
+        </tr>
+        <tr>
+            <th>8:40-9:25</th>
+            <td class="number">1</td>
+            <td>{% if schedule.monday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson1.id %}">{{ scedule.monday_lesson1.lesson_type }}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson1.id %}">{{ scedule.tuesday_lesson1.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson1.id %}">{{ scedule.wednesday_lesson1.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson1.id %}">{{ scedule.thursday_lesson1.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson1.id %}">{{ scedule.friday_lesson1.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson1.id %}">{{ scedule.saturday_lesson1.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson1 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson1.id %}">{{ scedule.sunday_lesson1.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>9:25-10:05</th>
+            <td class="number">2</td>
+            <td>{% if schedule.monday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson2.id %}">{{ scedule.monday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson2.id %}">{{ scedule.tuesday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson2.id %}">{{ scedule.wednesday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson2.id %}">{{ scedule.thursday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson2.id %}">{{ scedule.friday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson2.id %}">{{ scedule.saturday_lesson2.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson2 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson2.id %}">{{ scedule.sunday_lesson2.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>10:10-10:50</th>
+            <td class="number">3</td>
+            <td>{% if schedule.monday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson3.id %}">{{ scedule.monday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson3.id %}">{{ scedule.tuesday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson3.id %}">{{ scedule.wednesday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson3.id %}">{{ scedule.thursday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson3.id %}">{{ scedule.friday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson3.id %}">{{ scedule.saturday_lesson3.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson3 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson3.id %}">{{ scedule.sunday_lesson3.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>10:55-11:35</th>
+            <td class="number">4</td>
+            <td>{% if schedule.monday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson4.id %}">{{ scedule.monday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson4.id %}">{{ scedule.tuesday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson4.id %}">{{ scedule.wednesday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson4.id %}">{{ scedule.thursday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson4.id %}">{{ scedule.friday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson4.id %}">{{ scedule.saturday_lesson4.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson4 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson4.id %}">{{ scedule.sunday_lesson4.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>11:40-12:20</th>
+            <td class="number">5</td>
+            <td>{% if schedule.monday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson5.id %}">{{ scedule.monday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson5.id %}">{{ scedule.tuesday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson5.id %}">{{ scedule.wednesday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson5.id %}">{{ scedule.thursday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson5.id %}">{{ scedule.friday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson5.id %}">{{ scedule.saturday_lesson5.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson5 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson5.id %}">{{ scedule.sunday_lesson5.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>12:25-13:05</th>
+            <td class="number">-</td>
+            <td colspan = "7" class='breakfast'> Обед </td>
+        <tr>
+            <th>13:05-13:55</th>
+            <td class="number">6</td>
+            <td>{% if schedule.monday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson6.id %}">{{ scedule.monday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson6.id %}">{{ scedule.tuesday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson6.id %}">{{ scedule.wednesday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson6.id %}">{{ scedule.thursday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson6.id %}">{{ scedule.friday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson6.id %}">{{ scedule.saturday_lesson6.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson6 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson6.id %}">{{ scedule.sunday_lesson6.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        </tr>      
+        <tr>
+            <th>13:55-14:35</th>
+            <td class="number">7</td>
+            <td>{% if schedule.monday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson7.id %}">{{ scedule.monday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson7%}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson7.id %}">{{ scedule.tuesday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson7.id %}">{{ scedule.wednesday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson7.id %}">{{ scedule.thursday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson7.id %}">{{ scedule.friday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson7.id %}">{{ scedule.saturday_lesson7.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson7 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson7.id %}">{{ scedule.sunday_lesson7.lesson_type}}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>14:40-15:20</th>
+            <td class="number">8</td>
+            <td>{% if schedule.monday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson8.id %}">{{ scedule.monday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson8.id %}">{{ scedule.tuesday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson8.id %}">{{ scedule.wednesday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson8.id %}">{{ scedule.thursday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson8.id %}">{{ scedule.friday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson8.id %}">{{ scedule.saturday_lesson8.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson8 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson8.id %}">{{ scedule.sunday_lesson8.lesson_type}}</a>{% endif %}</td>
+        </tr>     
+        <tr>
+            <th>15:25-16:05</th>
+            <td class="number">9</td>
+            <td>{% if schedule.monday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.monday_lesson9.id %}">{{ scedule.monday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.tuesday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.tuesday_lesson9.id %}">{{ scedule.tuesday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.wednesday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.wednesday_lesson9.id %}">{{ scedule.wednesday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.thursday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.thursday_lesson9.id %}">{{ scedule.thursday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.friday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.friday_lesson9.id %}">{{ scedule.friday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.saturday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.saturday_lesson9.id %}">{{ scedule.saturday_lesson9.lesson_type}}</a>{% endif %}</td>
+            <td>{% if schedule.sunday_lesson9 %}<a href="{% url "schedules:lesson_details" scedule.sunday_lesson9.id %}">{{ scedule.sunday_lesson9.lesson_type}}</a>{% endif %}</td>
+        </tr>
+    </table>
+    </div>
+    {% endif %} 
+    <a href="{% url "schedules:main" %}" class="btn">Назад</a>
+    {% endblock content %}
+    {% block scripts %}
+    <script>
+        const tds = document.querySelectorAll('td');
+        tds.forEach(td => {
+            if (td.querySelector('a')) {
+              td.classList.add('td-link'); // Добавляет класс для  CSS
+            }
+        });
+    </script>
+    {% endblock scripts %}
+</body>
+</html>

@@ -1,0 +1,128 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %} 
+<DOCTYPE html>
+<html >
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Домашняя страница{% endblock %}
+    {% block stylesheet %}
+    <link rel="stylesheet" href= "{% static 'index/cards-styles.css' %}">
+    {% endblock stylesheet %}
+  </head>
+  <body>
+    {{ context }}
+  {% block content %}
+  <div class="texts">
+    <h2 class="title">Основная страница сайта школы </h2>
+    <h3 class="content"> Тут можно расположить всю нужную информацию</h3>
+    {% if not request.user.is_authenticated %}
+      <p class="login_context">Контент на сайте не доступен для сторонних пользователей</p>   
+      <div class="btn">
+        <a href="{% url "users:login" %}">Войти</a>
+      </div>
+    {% endif %}
+  </div> 
+  {% if request.user.is_authenticated %}
+  <div class="newsbtn">
+    <a href="{% url "news:main" %}">Посмотреть новости школы</a>
+  </div>
+  <div class="card-container">
+    <a href="{% url "schedules:main" %}" >
+    <div class="card">
+      <img src="{% static 'images/1.jpg' %}">
+      <div class="card-content">
+        <h3>Расписания</h3>
+        <p>Расписание уроков, кружков и школные события</p>
+        </div>
+    </div>
+  </a>
+  <a href="{% url "suggestions:suggestion_list" %}" >
+    <div class="card">
+      <img src="{% static 'images/1.jpg' %}">
+      <div class="card-content">
+        <h3>Предложения</h3>
+        <p>Голосование за предложения от учеников</p>
+        </div>
+    </div>
+  </a>
+    <a href="{% url "menu:menu_display" %}">
+    <div class="card">
+      <img src="{% static 'images/2.jpg' %}" >
+        <div class="card-content">
+          <h3>Меню столовой</h3>
+          <p>Меню столовой</p>
+        </div>
+    </div>
+    </a>
+    <a href="{% url "menu:menu_display" %}">
+      <div class="card">
+        <img src="{% static 'images/2.jpg' %}" >
+          <div class="card-content">
+            <h3>База знаний</h3>
+            <p>Учебные материалы, правила, памятки и тесты.</p>
+          </div>
+      </div>
+    </a>
+    <a href="{% url "menu:menu_display" %}">
+      <div class="card">
+        <img src="{% static 'images/2.jpg' %}" >
+          <div class="card-content">
+            <h3>Для волонтеров</h3>
+            <p>Волонтёрские программы, социальные инициативы и благотворительные акции.</p>
+          </div>
+      </div>
+    </a>
+    <a href="{% url "exit_notes:exit_notes" %}">
+    <div class="card">
+      <img src="{% static 'images/3.jpg' %}">
+      <div class="card-content">
+        <h3>Электронные записки</h3>
+        <p>Запросить записку у родителей и классного рукоаордителя</p>
+      </div>
+    </div>
+    </a>
+    <a href="{% url "main:rules" %}">
+      <div class="card">
+        <img src="{% static 'images/3.jpg' %}">
+        <div class="card-content">
+          <h3>Школьные правила</h3>
+          <p>Узнайте подробнее о правилах в школе</p>
+        </div>
+      </div>
+      </a>
+      <a href="{% url "main:emergencies" %}">
+        <div class="card">
+          <img src="{% static 'images/3.jpg' %}">
+          <div class="card-content">
+            <h3>Схемы действий при ЧС</h3>
+            <p>Ознакомиться со схемами действий при ЧС</p>
+          </div>
+        </div>
+        </a>
+    {% if request.user|has_group:teachers %}
+    <a href="{% url "repair_requests:request_list" %}" >
+    <div class="card">
+      <img src="{% static 'images/4.jpg' %}" >
+        <div class="card-content">
+          <h3>Запросы нa ремонт</h3>
+          <p>Разместить запрос на ремоннт или замену оборудования</p> 
+        </div>
+    </div>
+    </a>
+  {% endif %}
+  {% if request.user|has_group:admin %}
+    <a href="{% url "users:register" %}" >
+    <div class="card">
+      <img src="{% static 'images/4.jpg' %}" >
+        <div class="card-content">
+          <h3>Регистрация</h3>
+          <p>Зарегистрировать нового пользователя</p> 
+        </div>
+    </div>
+    </a>
+  {% endif %}
+{% endif %}
+{% endblock %}
+</body>
+</html>

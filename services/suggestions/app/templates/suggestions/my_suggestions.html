@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+{% if suggestions %}
+  <h2>Your Suggestions</h2>
+  <ul>
+    {% for suggestion in suggestions %}
+      <li>
+        <h3>{{ suggestion.title }}</h3>
+        <p>{{ suggestion.content }}</p>
+        <p>Created on: {{ suggestion.created_date }}</p>
+        {% if suggestion.is_denied %}
+        <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}"> <p>Предложение отклоненно по причине: {{suggestion.denial_reason}}</p></a>
+        {% elif suggestion.is_moderated %}
+        <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}"><p>Прошло модерацию</p></a>
+        {% else %}
+        <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}"><p>Находится на модерации</p></a>
+        {% endif %}
+      </li>
+    {% endfor %}
+    <div class="card-container">
+      <div class="suggestion-card">
+        <div class="card-content">
+          <h3>{{ suggestion.title }}</h3>
+          <div class="buttons"></div>
+            {% if suggestion.is_denied %}
+              <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}">Предложение отклоненно по причине: {{suggestion.denial_reason}}</a>
+            {% elif suggestion.is_moderated %}
+              <a href="{% url 'suggestions:suggestion_detail' suggestion.id %}">Прошло модерацию</a>
+            {% else %}
+              <a href='suggestions:suggestion_detail'>Находится на модерации</a>
+            {% endif %}
+          </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </ul>
+{% else %}
+  <p>You haven't created any suggestions yet.</p>
+{% endif %}
+{% endblock content %}

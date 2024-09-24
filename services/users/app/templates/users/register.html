@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+{% load static %}
+<head>
+    {% block title %}
+    Страница регистрации
+    {% endblock title %}
+</head>
+<body>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Создать пользователя</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit">Создать пользователя</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script>
+        $("#id_parents").select2();
+        $("#id_head_teacher").select2();
+        $("#id_groups").select2();
+    </script>
+{% endblock scripts%}
+</body>

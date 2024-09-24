@@ -1,0 +1,78 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+<html>
+    <head>
+        {% block title %} Новый набор меню {% endblock title %}
+        {% block stylesheet %}
+        <link rel="stylesheet" href="{% static "knowledge_base/home.css" %}">
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+            <h1> База знаний </h1>
+            {% if reques.user|has_group:teacher %}
+                <a href="{% url "knowledge_base:add_material" %}">Добавить новый материал</a>
+            {% endif %}
+            <form action="" method="GET">
+            <input type="text" name="q" value="{{ query }}" placeholder="Поиск по материалам">
+                <div class="dropdown">
+                    <button class="dropbtn">Фильтры</button>
+                    <div class="dropdown-content">
+                        <li> Предмет:
+                            <select name="subject">
+                                <option value="">Любой предмет</option>
+                                {% for bucket in subject_buckets %}
+                                    <option value="{{ bucket.key }}" {% if subject_filter == bucket.key %}selected{% endif %}>{{ bucket.key }} ({{ bucket.doc_count }})</option>
+                                {% endfor %}
+                            </select>
+                        </li>xs
+                        <li> Тип материала:
+                            <select name="material_type">
+                                <option value="">Любой тип</option>
+                                {% for bucket in material_type_buckets %}
+                                    <option value="{{ bucket.key }}">{{ bucket.key }} ({{ bucket.doc_count }})</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li> Автор:
+                            <select name="author">
+                                <option value="">Любой автор</option>
+                                {% for bucket in author_buckets %}
+                                    <option value="{{ bucket.key }}">{{ bucket.key }} ({{ bucket.doc_count }})</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <input type="checkbox" name="favorite" id="favorite-filter" {% if favorite_filter %}checked{% endif %}>
+                        <label for="favorite-filter">Show Favorites</label>
+                    </div>
+                </div>
+            </form>
+            <div class="materials">
+                {% for material in page_obj %}
+                    <div class="material-card">
+                        <h3>{{ material.title }}</h3>
+                        <div class="info">
+                            <h2 class="title">{{ material.title }}</h2>
+                            <p class="description">{{ material.description }}</p>
+                            {% if material not in user_favorites%}
+                                <a href="{% url "knowledge_base:add_favoite" %}">&hearts;</a>
+                            {% else %}
+                                <a href="{% url "knowledge_base:delete_favorite" %}" style="color:red">&hearts;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                {% endif %}
+                <span>Страница {{ page_obj.number }} oиз {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                {% endif %}
+            </div>
+        {% endblock content %}
+    </body>
+</html>

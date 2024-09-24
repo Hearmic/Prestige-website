@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} Создать предложение {% endblock %}
+
+{% block content %}
+  <h1>Создать предложение</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    {% for error in form.non_field_errors %}
+      <p style="color: red;">{{ error }}</p> 
+    {% endfor %}
+   <button type="submit">Отправить предложение</button>
+  </form>
+
+{% endblock content %}

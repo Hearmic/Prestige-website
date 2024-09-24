@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+<html>
+  <head>
+        <link rel="stylesheet" href="{% static 'exit-notes/details.css' %}">
+  </head>
+  <body>
+    {% block content %}
+    <div class="all-container">
+    <div class="card">
+    <h1> {{ note.title }} </h1>
+    <h3> {{ note.description }}</h3>
+    <p>Время создания: {{ note.created_on }}</p>
+    <p>Создано учеником: {{ note.created_by }}</p>
+    {% if not note.parent_approved == None %}
+        <p>Подтвержденно родителем: {{ note.parent_approved }}</p>
+    {% endif %}
+    {% if not note.teacher_approved == None %}
+    <p>Подтвержденно учителем: {{ note.teacher_approved }}</p>
+    {% endif %}
+    {% if not note.security_approved == None %}
+    <p>Подтвержденно охранником: {{note.security_approved}} </p>
+    {% endif %}
+    {% if note.is_denied == True %}
+        <p class="status-red">Записка отклонена {{ note.denied_by }}</p>
+    {% elif note.parent_approved is None and note.teacher_approved is not None %}
+        <p class="status-yellow">Ожидает подтверждения родителя</p>
+    {% elif note.parent_approved is not None and note.teacher_approved is None %}
+        <p class="status-yellow">Ожидает подтверждения классного руководителя</p>
+    {% elif note.parent_approved is None and note.teacher_approved is None %}
+        <p class="status-yellow">Ожидает подтверждения</p>
+    {% else %}
+        <p class="status-green">Записка подтверждена</p>
+    {% endif %}
+    <a href="{% url "exit_notes:exit_notes" %}" class="btn"> Назад </a>
+        {% csrf_token %}
+    {% if request.user|has_group:teachers %}
+    
+        <a href= "{% url "exit_notes:teacher_approve" note.id %}" class="btn">Подтвердить</a>
+    {% endif %}
+    {% if request.user|has_group:parents %}
+        <a href="{% url "exit_notes:parent_approve" note.id %}" class="btn"> Подтвердить </a>
+    {% endif %}
+    {% if request.user|has_group:security %}
+    <a href="{% url "exit_notes:security_approve" note.id %}" class="btn"> Подтвердить </a>
+    {% endif %}
+    {% if request.user|has_group:moderators %}
+        <a href="{% url "exit_notes:teacher_approve" note.id %}" class="btn">Подтвердить (Как учитель)</a>
+        <a href="{% url "exit_notes:parent_approve" note.id %}" class="btn">Подтвердить (Как родитель)</a>
+        <a href="{% url "exit_notes:security_approve" note.id %}" class="btn">Подтвердить (Как охранник)</a>
+    {% endif %}
+    {% if not request.user|has_group:students %}
+    <a href="{% url "exit_notes:deny" note.id %}" class="btn"> Отклонить </a>
+    {% endif %}
+    <a href="{% url "exit_notes:delete" note.id %}" class="btn"> Удалить </a>
+   </div>
+    <div class="qr">
+        <img src="{{ note.qr_code }}" alt="QR Code">
+    </div>
+  </div>
+  {% endblock content %}
+  </body>
+</html>

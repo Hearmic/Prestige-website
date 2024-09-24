@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ material.title }} - Детализация</title>
+        <link rel="stylesheet" href="{% static 'knowledge_bawe/material_detail.css' %}">
+    </head>
+    <body>
+    {% block content %}
+        <h1 class="title">{{ material.title }}</h1>
+        <p class="content">{{ material.description }}</p>
+        <!-- Превью файлов -->
+        <div class="file-preview">
+        <h3>Файлы</h3>
+            {% for file in files %}
+            <iframe src="https://docs.google.com/gview?url={{ file.url }}&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>
+            <a href="{{ file.url }}" class="file-link" target="_blank">Скачать {{ file.name }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- Кнопки навигации -->
+        <div class="button-container">
+            <button class="btn" onclick="goBack()">Назад</button>
+            <button class="btn btn-edit" onclick="editMaterial()">Редактировать</button>
+        </div>
+    {% endblock content %}
+    </body>
+
+</html>

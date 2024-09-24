@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+<html>
+    <head>
+        {% block title %}Добавление аллергий{% endblock title %}
+    </head>
+    <body>
+        {% block content %}
+        <h1>Добавление аллергий</h1>
+        
+        <form method="post" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Добавить">
+        </form>
+        <h1>Список аллергий</h1>
+        {% for allergies in allergies %}
+            <p>{{ allergies.name }}</p>
+            <a href="{% url "menu:delete_allergie" allergies.id %}">Удалить</a>
+        {% endfor %}
+        {% endblock content %}
+    </body>
+</html>

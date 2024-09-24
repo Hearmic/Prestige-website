@@ -1,0 +1,78 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<head>
+{% block title %}
+  иди нахуй 
+{% endblock  %}
+ 
+ {% block stylesheet %}
+ <link rel="stylesheet" href= "{% static 'index/system-styles.css' %}">
+ {% endblock stylesheet %}
+</head>
+<body>
+{% block content %}
+
+<div class="typescale">
+    <div class="spacings">
+        <div class="spacing_4px"></div>
+        <div class="spacing_8px"></div>
+        <div class="spacing_12px"></div>
+        <div class="spacing_16px"></div>
+        <div class="spacing_24px"></div>
+        <div class="spacing_32px"></div>
+        <div class="spacing_48px"></div>
+        <div class="spacing_64px"></div>
+        <div class="spacing_96px"></div>
+    </div>
+    <div class="fonts">
+        <h1 class="Headline1">Headline 1 Montserrat</h1>
+        <h2 class="Headline2">Headline 2 Montserrat</h2>
+        <h3 class="Headline3">Headline 3 Montserrat</h3>
+        <h4 class="Headline4">Headline 4 Montserrat</h4>
+        <h5 class="Headline5">Headline 5 Montserrat</h5>
+        <h6 class="Headline6">Headline 6 Montserrat</h6>
+        <p class="Subtitle1">Sublitle 1 Montserrat</p>
+        <p class="Subtitle2">Sublitle 2 Montserrat</p>
+        <p class="Body1">Body 1 Montserrat</p>
+        <p class="Body2">Body 2 Montserrat</p>
+        <a href="link_primary" class="link_primary"> Link primary </a>
+        <a href="link_secondary" class="link_secondary"> Link secondary </a>
+    </div>
+</div>
+
+<div class="buttons">
+    <a href="" class="button_primary"> Button primary</a>
+    <a href="" class="button_secondary">Button secondary</a>
+</div>
+
+<div class="colors">
+    <div class="color_bg">#0B1D51</div>
+    <div class="color_font">#FFFFFF</div>
+    <div class="color_action">#1F62FF</div>
+    <div class="color_action_hover">#0043E0</div>
+    <div class="color_accent">#FFD166</div>
+</div>
+
+<div class="card1">
+    <div class="card_content">
+        <p class="Subtitle2">Title</p>
+        <p class="Body2">Body</p>
+    </div>
+    <div class="buttons">
+        <a href="" class="button_primary"> Button primary</a>
+        <a href="" class="button_secondary">Button secondary</a>
+    </div>
+</div>
+<div class="card2">
+    <div class="card_content">
+        <p class="Subtitle2">Title</p>
+        <p class="Body2">Body</p>
+    </div>
+    <div class="buttons">
+        <a href="" class="button_primary"> Button primary</a>
+        <a href="" class="button_secondary">Button secondary</a>
+    </div>
+</div>
+{% endblock content %}
+</body>

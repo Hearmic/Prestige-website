@@ -1,0 +1,87 @@
+{% extends "main/base.html" %}
+{% load static %}
+<html>
+<head>
+    {% block title %}
+        Электронные записки
+    {% endblock title %}
+    {% block slylesheet %}
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href= "{% static 'exit-notes/main-styles.css' %}">
+    {% endblock %}
+    
+</head>
+<body>
+    {% block content %} 
+    <div class="how-it-works">
+        <h1>Электронные записки</h1>
+        <a href="{% url "exit_notes:how_it_works" %}" class="btn">Как это работает?</a>
+    </div>
+      
+    <div class="all-container">
+        <div class= "creation-form">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="fields">
+                    {{ form.as_p }}
+                </div>
+                <div class="button">
+                    <button type="Submit" class="btn"> Отправить записку</button>
+                </div>
+            </form>
+        </div>
+        <div class="list">
+          <h1>Мои записки</h1>
+          <div class="active">
+            <h2>Активные записки</h2>
+            <div class="card-container">
+                {% for note in active_notes %}
+                    <a href="{% url "exit_notes:exit_notes_details" note.id %}"> 
+                        <div class="card">
+                            <h3>{{ note.title }}</h3>
+                            <p>Записки активна, предоставьте её на охране</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="avaiting_confirmatoion">
+                <h2>Ожидают подтверждения</h2>
+                <div class="card-container"> 
+                    {% for note in awaiting_confirmation_notes %}
+                        <a href="{% url "exit_notes:exit_notes_details" note.id %}"> 
+                            <div class="card">
+                                <h3>{{ note.title }}</h3>
+                                    {% if note.parent_approved is None and note.teacher_approved is not None %}
+                                        <p>Ожидает подтверждения родителя</p>
+                                    {% elif note.parent_approved is not None and note.teacher_approved is None %}
+                                        <p>Ожидает подтверждения классного руководителя</p>
+                                    {% else %}
+                                        <p>Ожидает подтверждения</p>
+                                    {% endif %}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>   
+            </div>    
+            <div class="inactive">
+                <h2>Отклоненные</h2>
+                <div class="card-container">
+                    {% for note in denied_notes %}
+                        <a href="{% url "exit_notes:exit_notes_details" note.id %}"> 
+                            <div class="card">
+                                <h3>{{ note.title }}</h3>
+                                {% if note.is_denied == True %}
+                                    <p>Записка отклонена: {{ note.denied_by }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div> 
+            </div>
+        </div>
+    </div>            
+    {% endblock content %} 
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load custom_tags %}
+<html>
+    <head>
+        {% block title %}Список всех меню{% endblock title %}
+    </head>
+    <body>
+        {% block content %}
+        
+        <a href="{% url "menu:create_breakfast_set" %}">Новый набор на завтрак</a>
+        <a href="{% url "menu:create_lunch_set" %}">Новый набор на обед</a>
+        <a href="{% url "menu:create_dinner_set" %}">Новый набор на полдик</a>
+
+        <p><a href="{% url "menu:menu_display" %}">Назад</a></p>
+        
+        {% endblock content %}
+    </body>
+</html>

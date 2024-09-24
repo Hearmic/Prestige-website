@@ -1,0 +1,136 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<html>
+<head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "schedules/schedule_details.css" %}">
+    {% endblock stylesheet %}
+</head>
+
+<body>
+    {% block content %}
+        {{ form.errors }}
+        <h1>Расписание уроков</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <h3>Класс: {{ form.grade}}"{{ form.litera }}"</h3>
+                <div class="table-container">
+                <table>
+                    <tr>
+                        <th>№</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                        <th>Воскреcенье</th>
+                    </tr>
+                    <tr>
+                        <td class="number">1</td>
+                        <td>{{ form.monday_lesson1 }}</td>
+                        <td>{{ form.tuesday_lesson1 }}</td>
+                        <td>{{ form.wednesday_lesson1 }}</td>
+                        <td>{{ form.thursday_lesson1 }}</td>
+                        <td>{{ form.friday_lesson1 }}</td>
+                        <td>{{ form.saturday_lesson1 }}</td>
+                        <td>{{ form.sunday_lesson1 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">2</td>
+                        <td>{{ form.monday_lesson2 }}</td>
+                        <td>{{ form.tuesday_lesson2 }}</td>
+                        <td>{{ form.wednesday_lesson2 }}</td>
+                        <td>{{ form.thursday_lesson2 }}</td>
+                        <td>{{ form.friday_lesson2 }}</td>
+                        <td>{{ form.saturday_lesson2 }}</td>
+                        <td>{{ form.sunday_lesson2 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">3</td>
+                        <td>{{ form.monday_lesson3 }}</td>
+                        <td>{{ form.tuesday_lesson3 }}</td>
+                        <td>{{ form.wednesday_lesson3 }}</td>
+                        <td>{{ form.thursday_lesson3 }}</td>
+                        <td>{{ form.friday_lesson3 }}</td>
+                        <td>{{ form.saturday_lesson3 }}</td>
+                        <td>{{ form.sunday_lesson3 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">4</td>
+                        <td>{{ form.monday_lesson4 }}</td>
+                        <td>{{ form.tuesday_lesson4 }}</td>
+                        <td>{{ form.wednesday_lesson4 }}</td>
+                        <td>{{ form.thursday_lesson4 }}</td>
+                        <td>{{ form.friday_lesson4 }}</td>
+                        <td>{{ form.saturday_lesson4 }}</td>
+                        <td>{{ form.sunday_lesson4 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">5</td>
+                        <td>{{ form.monday_lesson5  }}</td>
+                        <td>{{ form.tuesday_lesson5  }}</td>
+                        <td>{{ form.wednesday_lesson5  }}</td>
+                        <td>{{ form.thursday_lesson5  }}</td>
+                        <td>{{ form.friday_lesson5  }}</td>
+                        <td>{{ form.saturday_lesson5  }}</td>
+                        <td>{{ form.sunday_lesson5  }}</td>
+                        </tr>
+                    <tr>
+                        <td class="number">6</td>
+                        <td>{{ form.monday_lesson6 }}</td>
+                        <td>{{ form.tuesday_lesson6 }}</td>
+                        <td>{{ form.wednesday_lesson6 }}</td>
+                        <td>{{ form.thursday_lesson6 }}</td>
+                        <td>{{ form.friday_lesson6 }}</td>
+                        <td>{{ form.saturday_lesson6 }}</td>
+                        <td>{{ form.sunday_lesson6 }}</td>
+                    </tr>      
+                    <tr>
+                        <td class="number">7</td>
+                        <td>{{ form.monday_lesson7 }}</td>
+                        <td>{{ form.tuesday_lesson7 }}</td>
+                        <td>{{ form.wednesday_lesson7 }}</td>
+                        <td>{{ form.thursday_lesson7 }}</td>
+                        <td>{{ form.friday_lesson7 }}</td>
+                        <td>{{ form.saturday_lesson7 }}</td>
+                        <td>{{ form.sunday_lesson7 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">8</td>
+                        <td>{{ form.monday_lesson8 }}</td>
+                        <td>{{ form.tuesday_lesson8 }}</td>
+                        <td>{{ form.wednesday_lesson8 }}</td>
+                        <td>{{ form.thursday_lesson8 }}</td>
+                        <td>{{ form.friday_lesson8 }}</td>
+                        <td>{{ form.saturday_lesson8 }}</td>
+                        <td>{{ form.sunday_lesson8 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="number">9</td>
+                        <td>{{ form.monday_lesson9 }}</td>
+                        <td>{{ form.tuesday_lesson9 }}</td>
+                        <td>{{ form.wednesday_lesson9 }}</td>
+                        <td>{{ form.thursday_lesson9 }}</td>
+                        <td>{{ form.friday_lesson9 }}</td>
+                        <td>{{ form.saturday_lesson9 }}</td>
+                        <td>{{ form.sunday_lesson9 }}</td>
+                    </tr> 
+                </table>
+            <button type="Submit" class="btn"> Сохранить расписание </button>
+            </form>
+        </div>    
+        <a href="{% url "schedules:main" %}" class="btn">Назад</a>
+    {% endblock content %}   
+    {% block scripts %}
+        <script>
+            const tds = document.querySelectorAll('td');
+            tds.forEach(td => {
+                if (td.querySelector('a')) {
+                td.classList.add('td-link'); // Add a class for styling
+                }
+            });
+        </script>
+    {% endblock scripts %}
+</body>
