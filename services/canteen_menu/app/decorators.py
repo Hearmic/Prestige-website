@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect
 
 def allowed_user_groups(allowed_groups=[]):

@@ -1,0 +1,20 @@
+Version: apps/v1
+kind: Deployment
+metadata:
+  name: canteen_menu
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: canteen_menu
+  template:
+    metadata:
+      labels:
+        app: canteen_menu
+      generateName: canteen_menu
+    spec:
+      containers:
+      - name: canteen_menu
+        image: quay.io/your_docker_username/canteen_menu:v1
+        ports:
+        - containerPort: 8000

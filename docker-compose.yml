@@ -18,7 +18,7 @@ services:
       - users
   db:
     build: .
-    container_name: my_postgres
+    container_name: prestige-web-postgres
     ports:
       - "5432:5432"
     volumes:
@@ -29,47 +29,72 @@ services:
       POSTGRES_PASSWORD: ${PASSWORD}
   main:
     build: ./services/main
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   canteen_menu:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
+      - SECRET-KEY=${CANTEEN_MENU_SECRET_KEY}
     build: ./services/canteen_menu
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   exit_notes:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/exit_notes
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   knowledge_base:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/knowledge_base
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   news:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/news
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   schedules:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/schedules
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   suggestions:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/suggestions
     volumes:
       - .:/app
     ports:
       - "8000:8000"
   users:
+    environment:
+      - LOGIN=${POSTGRES_USER} 
+      - PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/users
     volumes:
       - .:/app

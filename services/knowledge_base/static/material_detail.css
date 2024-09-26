@@ -1,0 +1,49 @@
+/* Стили для контейнера и файлов */
+.file-preview {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.file-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--nav-main);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.file-link:hover {
+    background-color: var(--switchers-main);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: var(--nav-main);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--switchers-main);
+}
+
+.btn-edit {
+    background-color: #28a745;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+}

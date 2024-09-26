@@ -1,0 +1,150 @@
+:root {
+  --white: #fff;
+  --black: #24292d;
+  --nav-main: #4070f4;
+  --switchers-main: #0b3cc1;
+  --light-bg: #F0F8FF;
+ }
+
+ body {
+  font-family: sans-serif;  /* Adjust as needed */
+  margin: 0;
+  padding: 0;
+ }
+
+a {
+  color: inherit;
+  text-decoration: none; /* Remove underline */
+}
+
+
+.title {
+  font-size: 32px;
+  width: 100%;
+  color: var(--black);
+  text-align: center;
+  display: inline-block;
+  align-self: center;
+  padding: 0px 20px;
+  margin: 0px;
+  }
+  
+.inform {
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+  display: inline-block;
+  align-self: center;
+  padding: 0px 20px;
+  }
+
+.call-to-action {
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+  
+.call-to-action-btn {
+  background-color: var(--nav-main);
+  color: var(--white);
+  border: none;
+  margin-left: 30px;
+  border-radius: 5px;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  width: 70%;
+  height: 38px;
+  align-self: center;
+  cursor: pointer;
+  }
+
+.top-buttons {
+    display:flex;
+    justify-content: space-between;
+    align-content: baseline;
+    direction: ltr;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    }
+  
+.top-buttons a{
+  font-size: small;
+}
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--nav-main); /* Replace with your primary color */
+  color: var(--white); /* Replace with your text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--switchers-main); /* Replace with your hover color */
+}
+
+/* Card styles with horizontal layout */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0;  /* Add some margin for better spacing */
+}
+
+
+
+.suggestion-card {
+  width: 290px; /* Adjust width as needed */
+  height: auto;
+  margin: 30px 30px; /* Adjust margins for better spacing on phones */
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically on phones */
+  transition: transform 0.3s ease;
+}
+
+.suggestion-card:hover {
+  transform: scale(1.05);
+}
+
+.card-content  {
+  color: var(--black);
+  font-size: 1.2rem; /* Adjust heading size for phones */
+  margin-top: 0; /* Remove top margin on phones */
+  margin-bottom: 0;
+  margin-left: 0px; /* Remove left margin on phones */
+  display: flex;
+  flex-direction: column;
+}
+.card-content h3 {
+  margin: 0;
+  display: block; /* Allow wrapping to multiple lines */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Add ellipsis (...) for truncation */
+  white-space:nowrap;  
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.card-content p{
+  margin: 0;
+  margin-top: 20px;
+  font-size: 12px;
+  display: block; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.vote-counts {
+  margin-top: auto;
+  margin-right: 50%;
+}
+

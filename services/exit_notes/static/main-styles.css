@@ -1,0 +1,157 @@
+
+.body{
+  width: 100%;
+  margin:0px;
+  padding:0px;
+}
+.how-it-works{
+    padding:1rem 8rem 0rem 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  }
+  
+  .how-it-works h1{
+    margin: 0;
+    padding: 0;
+  }
+
+  .all-container{
+    padding: 1rem 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+  }
+  
+  .list{
+    margin: 0px;
+    padding: 1rem;
+    width: 25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .list h2{
+    margin:0;
+    margin-bottom: 4px; 
+    border-bottom: solid 1px black;
+  }
+  
+  .creation-form{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width:25rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .fields h1{
+    display: inline-block;
+    border: solid 1px black;
+    margin: 0.5rem 0rem;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  
+  .fields p{
+    display:block;
+    margin:0;
+  }
+  
+  .fields span{
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .fields{
+    margin-bottom:10px;
+  }
+  .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #0037B8;
+      color: #FFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+  
+  .btn:hover{
+      background-color: #0b3cc1;
+    }
+  
+  .card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-right: 1rem;
+  }
+  .card{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin:0.5rem 0;
+      
+  }
+  .card-container a {
+    text-decoration: none
+  }
+  .card h3{
+    margin: 0.25rem;
+  }
+  .card p{
+    margin: 0.25rem;
+  }
+
+@media (max-width: 768px) {
+   .how-it-works h1{
+    margin-bottom: 10px;
+   }
+
+   .how-it-works{
+      flex-direction: column;
+      width: max-content;
+      align-self: center;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 0;
+      padding-left: 2rem;
+    }
+    .all-container{
+      width:400px;
+      padding: 0px;
+      
+      margin: 0 2rem;
+      align-self: center;
+    }
+    .list{
+      padding:0px;
+      margin: 0px;
+      width: 400px;
+    }
+    .list h2 { 
+      margin-bottom: 0.125rem;
+    }
+
+    .creation-form{
+      padding:1rem;
+      margin:0;
+      margin-bottom: 10px;
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 425px){
+
+    .how-it-works{
+      width: max-content;
+      padding: 0;
+    }
+    .all-container{
+      margin: 0;
+    }
+    .card-container{
+      flex-direction: column;
+    }
+  }
