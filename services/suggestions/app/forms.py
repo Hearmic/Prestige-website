@@ -6,7 +6,5 @@ class SuggestionForm(forms.ModelForm):
         model = Suggestion
         fields = ['title', 'description']
         
-
-
 class DenialReasonForm(forms.Form):
     denial_reason = forms.CharField(widget=forms.Textarea, label='Причина отказа', max_length=100)

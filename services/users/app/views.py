@@ -1,14 +1,22 @@
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth import get_user_model, authenticate, login, logout
 
 from .models import User
 from .forms import LoginUserForm,UserCreateForm
+from rest_framework import viewsets
+from .serializers import UserSerializer, UserGroupSerializer
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('name')
+    serializer_class = UserSerializer
 
+class UserGroupsViewSet(viewsets.ModelViewSet):
+    queryset = User.groups.all().order_by('name')
+    serializer_class = UserGroupSerializer
 
 def login_user(request):
     if request.method == 'POST':
@@ -26,7 +34,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('users:login'))# перенаправление на ссылку с именем "login" в облласти имен "users"
+    return redirect ('users:login')# перенаправление на ссылку с именем "login" в облласти имен "users"
 
 
 def register_user(request):

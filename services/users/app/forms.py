@@ -7,9 +7,8 @@ from django.contrib.auth.models import Group
 
 class LoginUserForm(forms.Form):
     username = forms.CharField(label = 'Имя', max_length = 20,widget= forms.TextInput(attrs= {'class': 'form-input'}))
-    password = forms.CharField(label = 'Пароль', widget = forms.PasswordInput(attrs= {'class': 'form-input'}))
- 
- 
+    password = forms.CharField(label = 'Пароль', widget = forms.PasswordInput(attrs= {'class': 'form-input'})) 
+
 class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
@@ -18,8 +17,7 @@ class UserCreateForm(UserCreationForm):
     groups = MultipleChoiceField(
         choices=Group.objects.all().values_list('id', 'name')
     )
-    
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['surname'].label = 'Отчество'
