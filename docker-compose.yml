@@ -14,7 +14,7 @@ services:
       - knowledge_base
       - news
       - schedules
-      - suggestoins
+      - suggestions
       - users
   db:
     build: .

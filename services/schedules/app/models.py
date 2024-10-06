@@ -1,13 +1,24 @@
 from django.db import models
-from users.models import User
+from user_api import get_user_by_id
 
+def get_lesson_info(lesson):
+    try:
+        user_data = get_user_by_id(lesson.teacher_id)
+        first_name = user_data['first_name']
+        surname = user_data['surname']
+        return f"{lesson.lesson_type} {first_name} {surname}"
+    except (KeyError, TypeError):
+        # Handle errors if user data is missing or invalid
+        return f"{lesson.lesson_type} (Teacher information not found)"
+    
 class Lessons(models.Model):
     lesson_type = models.CharField(max_length=20)
-    teacher = models.ForeignKey(User, related_name='lesson_teacher', on_delete = models.CASCADE)
+    teacher_id = models.IntegerField()
     classroom = models.CharField(max_length=20)
     taught_from = models.IntegerField(default=1)
+
     def __str__(self):
-        return self.lesson_type + ' ' + self.teacher.first_name + " " + self.teacher.surname
+        return get_lesson_info(self)
 
 class school_schedule (models.Model):
     grade = models.IntegerField()
@@ -97,7 +108,7 @@ class event(models.Model):
 class club_lesson(models.Model):
     name = models.CharField(max_length=20)
     club = models.CharField(max_length=20)
-    teacher = models.ForeignKey(User, related_name='club_teacher',null=True, blank=True, on_delete = models.CASCADE)
+    teacher_id = models.IntegerField()
     classrom = models.CharField(max_length=20)
     day = models.CharField(max_length=20)
     lesson = models.IntegerField()

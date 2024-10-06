@@ -1,11 +1,15 @@
 from django import forms
 from .models import *
+from .user_api import *
 
 class LessonForm(forms.ModelForm):
     class Meta:
         model = Lessons
         fields = '__all__'
-
+    teacher_choice = forms.ChoiceField(
+        label='Выберите учителя',
+        choices=[(user['id'], user['first_name'],user['last_name']) for user in get_all_users() if user['group'] == 'Учитель'],
+        )
     lesson_type = forms.ChoiceField(
         choices=[
             ('Математика', 'Математика'),

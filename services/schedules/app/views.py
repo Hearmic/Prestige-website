@@ -1,9 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from schedules.models import school_schedule,Lessons
-from schollarsite.decorators import allowed_user_groups
+from .models import school_schedule,Lessons
+from .decorators import allowed_user_groups
 from .forms import * 
-
+import requests
 # Create your views here.
 def main(request):
     schedules = school_schedule.objects.all()  # Fetch all schedules
@@ -33,8 +32,13 @@ def create_schedule(request):
         if form.is_valid():
             grade = form.cleaned_data['grade']
             litera = form.cleaned_data['litera']
-            # Проверить существующие расписания по классу и литере
-            
+            user_id = form.cleaned_data['user_id']
+            response = requests.get(f'https://domain-name/users/list/{user_id}')
+            if response.status_code == 200:
+                user_data = response.json()
+                print(user_data)
+            else:
+                print(f"Error: {response.status_code}")
             try:
                 schedule = school_schedule.objects.get(grade=grade, litera=litera)
                 # Обновление существующих полей
