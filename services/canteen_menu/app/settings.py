@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.corsheaders'
 
     'app',
 ]
@@ -80,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'prestige_database',
-        'USER': '${LOGIN}',  
-        'PASSWORD': '${PASSWORD}', 
-        'HOST': 'prestige-web-postgres',  
+        'USER': '${POSTGRES_USER}',  
+        'PASSWORD': '${POSTGRES_PASSWORD}', 
+        'HOST': '0.0.0.0',  
         'PORT': 5432,  
     }
 }

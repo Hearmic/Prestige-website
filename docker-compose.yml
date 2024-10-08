@@ -1,95 +1,127 @@
 services:
+  elasticsearch:
+    build: ./elasticsearch
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    depends_on:
+      - db
+
   nginx:
     build: ./nginx
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
+    depends_on:
+      - db
+
   db:
     image: postgres
     restart: always
-    container_name: prestige-web-postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: prestige_database
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+
   main:
     build: ./services/main
-    environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - .:/app
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+
   canteen_menu:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET-KEY=${CANTEEN_MENU_SECRET_KEY}
     build: ./services/canteen_menu
     volumes:
       - .:/app
     ports:
       - "8001:8000"
+    depends_on:
+      - db
+
   exit_notes:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/exit_notes
     volumes:
       - .:/app
     ports:
       - "8002:8000"
+    depends_on:
+      - db
+
   knowledge_base:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/knowledge_base
     volumes:
       - .:/app
     ports:
       - "8003:8000"
+    depends_on:
+      - db
+
   news:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/news
     volumes:
       - .:/app
     ports:
       - "8004:8000"
+    depends_on:
+      - db
+
   schedules:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/schedules/
     volumes:
       - .:/app
     ports:
       - "8005:8000"
+    depends_on:
+      - db
+
   suggestions:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/suggestions
     volumes:
       - .:/app
     ports:
       - "8006:8000"
+    depends_on:
+      - db
+
   users:
     environment:
-      - LOGIN=${POSTGRES_USER} 
-      - PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/users
     volumes:
       - .:/app
     ports:
       - "8007:8000"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
+  esdata:
