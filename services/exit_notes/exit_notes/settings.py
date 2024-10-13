@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,13 +75,15 @@ WSGI_APPLICATION = 'exit_notes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+db_user = os.environ["POSTGRES_USER"]
+db_password = os.environ["POSTGRES_PASSWORD"]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'prestige_database',
-        'USER': '${POSTGRES_USER}',  
-        'PASSWORD': '${POSTGRES_PASSWORD}', 
-        'HOST': '0.0.0.0',  
+        'USER': db_user,  
+        'PASSWORD': db_password, 
+        'HOST': 'db',  
         'PORT': 5432,  
     }
 }

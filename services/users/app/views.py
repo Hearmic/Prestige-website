@@ -11,7 +11,7 @@ from .serializers import UserSerializer, UserGroupSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('name')
+    queryset = User.objects.all().order_by('first_name')
     serializer_class = UserSerializer
 
 class UserGroupsViewSet(viewsets.ModelViewSet):

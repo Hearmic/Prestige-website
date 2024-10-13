@@ -1,41 +1,64 @@
+networks:
+  db-network:
+    driver: bridge
+  nginx-network:
+    driver: bridge
+  
 services:
   elasticsearch:
     build: ./elasticsearch
     volumes:
       - esdata:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
     depends_on:
       - db
+    networks:
+    - db-network
 
   nginx:
     build: ./nginx
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - db
+      - main
+      - canteen_menu
+      - exit_notes
+      - knowledge_base
+      - news
+      - schedules
+      - suggestions
+      - users 
+    networks:
+    - nginx-network
 
   db:
     image: postgres
     restart: always
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: ${POSTGRES_USER} 
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: prestige_database
+    networks:
+    - db-network
 
 
   main:
     build: ./services/main
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER} 
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
     depends_on:
       - db
+    networks:
+    - db-network
+    - nginx-network
+
 
   canteen_menu:
     environment:
@@ -45,10 +68,12 @@ services:
     build: ./services/canteen_menu
     volumes:
       - .:/app
-    ports:
-      - "8001:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
 
   exit_notes:
     environment:
@@ -57,10 +82,12 @@ services:
     build: ./services/exit_notes
     volumes:
       - .:/app
-    ports:
-      - "8002:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
 
   knowledge_base:
     environment:
@@ -69,10 +96,12 @@ services:
     build: ./services/knowledge_base
     volumes:
       - .:/app
-    ports:
-      - "8003:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
 
   news:
     environment:
@@ -81,10 +110,13 @@ services:
     build: ./services/news
     volumes:
       - .:/app
-    ports:
-      - "8004:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
+
 
   schedules:
     environment:
@@ -93,22 +125,25 @@ services:
     build: ./services/schedules/
     volumes:
       - .:/app
-    ports:
-      - "8005:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
+
 
   suggestions:
     environment:
       - POSTGRES_USER=${POSTGRES_USER} 
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     build: ./services/suggestions
-    volumes:
-      - .:/app
-    ports:
-      - "8006:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
 
   users:
     environment:
@@ -117,10 +152,13 @@ services:
     build: ./services/users
     volumes:
       - .:/app
-    ports:
-      - "8007:8000"
     depends_on:
       - db
+    networks:
+      - db-network
+      - nginx-network
+
+
 
 volumes:
   postgres_data:

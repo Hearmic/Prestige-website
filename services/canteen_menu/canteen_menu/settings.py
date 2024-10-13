@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'app'
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -75,16 +74,18 @@ WSGI_APPLICATION = 'canteen_menu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prestige_database',
-        'USER': '${POSTGRES_USER}',  
-        'PASSWORD': '${POSTGRES_PASSWORD}', 
-        'HOST': '0.0.0.0',  
-        'PORT': 5432,  
-    }
-}
+# db_user = os.environ["POSTGRES_USER"]
+# db_password = os.environ["POSTGRES_PASSWORD"]
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'prestige_database',
+#         'USER': db_user,  
+#         'PASSWORD': db_password, 
+#         'HOST': 'db',  
+#         'PORT': 5432,  
+#     }
+# }
 
 
 # Password validation

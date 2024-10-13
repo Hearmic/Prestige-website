@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('material/<int:material_id>/', views.material_detail, name='material_detail'), # Страница учебного материала
+    path('favorites/', views.favorite_materials, name='favorites'), # Страница избранных материалов
+    path('material/add/', views.add_material, name='add_material'), # Страница добавления нового материала (для учителей/администраторов)
+    path('material/<int:material_id>/edit/', views.edit_material, name='edit_material'),     # Страница редактирования материала (для учителей/администраторов)
+    path('content/manage/', views.edit_material, name='edit_material'), # Страница управления контентом (для администраторов)
+    path('statistics/', views.statistics_page, name='statistics'),   
 ]
