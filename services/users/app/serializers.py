@@ -7,8 +7,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('__all__')
 
-class UserGroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('groups')
-

@@ -2,13 +2,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
-        
 class User(AbstractUser):
     surname = models.CharField(max_length=50, blank=True, null=True)
     parents = models.ManyToManyField('self', blank=True)
     sudy_group = models.IntegerField(default=1)
-    grade = models.ForeignKey("users.Grade", on_delete=models.CASCADE, null=True, blank=True, related_name='grade')
+    grade = models.ForeignKey("app.Grade", on_delete=models.CASCADE, null=True, blank=True, related_name='grade')
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='myuser_set', 

@@ -7,16 +7,11 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from .models import User
 from .forms import LoginUserForm,UserCreateForm
 from rest_framework import viewsets
-from .serializers import UserSerializer, UserGroupSerializer
-
+from .serializers import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('first_name')
     serializer_class = UserSerializer
-
-class UserGroupsViewSet(viewsets.ModelViewSet):
-    queryset = User.groups.all().order_by('name')
-    serializer_class = UserGroupSerializer
 
 def login_user(request):
     if request.method == 'POST':
