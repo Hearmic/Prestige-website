@@ -1,5 +1,4 @@
 from django import template
-from schedules.models import school_schedule
 
 register = template.Library()
 
