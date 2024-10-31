@@ -1,5 +1,5 @@
 from django.db import models
-from user_api import get_user_by_id
+from .user_api import get_user_by_id
 
 def get_lesson_info(lesson):
     try:
@@ -23,7 +23,7 @@ class Lessons(models.Model):
 class school_schedule (models.Model):
     grade = models.IntegerField()
     litera = models.CharField(max_length=1)
-    group = models.IntegerField(default= 1)
+    group = models.IntegerField(default=1)
     # Понедельник
     monday_lesson1 = models.ForeignKey(Lessons, related_name='monday_lesson1',null=True, blank=True, on_delete = models.CASCADE)
     monday_lesson2 = models.ForeignKey(Lessons, related_name='monday_lesson2',null=True, blank=True, on_delete = models.CASCADE)

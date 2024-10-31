@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}Домашняя страница{% endblock %}
     {% block stylesheet %}
-    <link rel="stylesheet" href= "{% static 'index/cards-styles.css' %}">
+    <link rel="stylesheet" href= "{% static 'css/cards-styles.css' %}">
     {% endblock stylesheet %}
   </head>
   <body>
@@ -19,16 +19,16 @@
     {% if not request.user.is_authenticated %}
       <p class="login_context">Контент на сайте не доступен для сторонних пользователей</p>   
       <div class="btn">
-        <a href="{% url "users:login" %}">Войти</a>
+        <a href="{{ http_host }}/users/login">Войти</a>
       </div>
     {% endif %}
   </div> 
   {% if request.user.is_authenticated %}
   <div class="newsbtn">
-    <a href="{% url "news:main" %}">Посмотреть новости школы</a>
+    <a href="{{ http_host }}/news">Посмотреть новости школы</a>
   </div>
   <div class="card-container">
-    <a href="{% url "schedules:main" %}" >
+    <a href="{{ http_host }}/schedules" >
     <div class="card">
       <img src="{% static 'images/1.jpg' %}">
       <div class="card-content">
@@ -37,7 +37,7 @@
         </div>
     </div>
   </a>
-  <a href="{% url "suggestions:suggestion_list" %}" >
+  <a href="{{ http_host }}/suggestions" >
     <div class="card">
       <img src="{% static 'images/1.jpg' %}">
       <div class="card-content">
@@ -46,7 +46,7 @@
         </div>
     </div>
   </a>
-    <a href="{% url "menu:menu_display" %}">
+    <a href="{{ http_host }}/menu">
     <div class="card">
       <img src="{% static 'images/2.jpg' %}" >
         <div class="card-content">
@@ -55,7 +55,7 @@
         </div>
     </div>
     </a>
-    <a href="{% url "menu:menu_display" %}">
+    <a href="{{ http_host }}/knowledge_base">
       <div class="card">
         <img src="{% static 'images/2.jpg' %}" >
           <div class="card-content">
@@ -64,7 +64,7 @@
           </div>
       </div>
     </a>
-    <a href="{% url "menu:menu_display" %}">
+    <a href="{{ http_host }}/for_volunteers">
       <div class="card">
         <img src="{% static 'images/2.jpg' %}" >
           <div class="card-content">
@@ -73,7 +73,7 @@
           </div>
       </div>
     </a>
-    <a href="{% url "exit_notes:exit_notes" %}">
+    <a href="{{ http_host }}/exit_notes">
     <div class="card">
       <img src="{% static 'images/3.jpg' %}">
       <div class="card-content">
@@ -82,7 +82,7 @@
       </div>
     </div>
     </a>
-    <a href="{% url "main:rules" %}">
+    <a href="{{ http_host }}/main/rules">
       <div class="card">
         <img src="{% static 'images/3.jpg' %}">
         <div class="card-content">
@@ -91,7 +91,7 @@
         </div>
       </div>
       </a>
-      <a href="{% url "main:emergencies" %}">
+      <a href="{{ http_host }}main/emergency_plots">
         <div class="card">
           <img src="{% static 'images/3.jpg' %}">
           <div class="card-content">
@@ -101,7 +101,7 @@
         </div>
         </a>
     {% if request.user|has_group:teachers %}
-    <a href="{% url "repair_requests:request_list" %}" >
+    <a href="{{ http_host }}/repair_requests" >
     <div class="card">
       <img src="{% static 'images/4.jpg' %}" >
         <div class="card-content">
@@ -112,7 +112,7 @@
     </a>
   {% endif %}
   {% if request.user|has_group:admin %}
-    <a href="{% url "users:register" %}" >
+    <a href="{{ http_host }}/users/register" >
     <div class="card">
       <img src="{% static 'images/4.jpg' %}" >
         <div class="card-content">

@@ -24,10 +24,10 @@ router = routers.DefaultRouter()
 router.register(r'list', views.UserViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('login/', views.login_user, name='login'),
-    path('logout/', views.logout_user, name='logout'),
-    path('register/', views.register_user, name='register'),
+    path('users/admin/', admin.site.urls),
+    path('users/', include(router.urls)),
+    path('users/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('users/login/', views.login_user, name='login'),
+    path('users/logout/', views.logout_user, name='logout'),
+    path('users/register/', views.register_user, name='register'),
 ]

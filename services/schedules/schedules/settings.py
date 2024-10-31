@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8sv88xfbl00^vx#ris%73jhpwol=)=e%=3ec5n)**ffg^z!hsy'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG_STATE')
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,9 +49,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', 
 ]
 
 ROOT_URLCONF = 'schedules.urls'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 TEMPLATES = [
     {

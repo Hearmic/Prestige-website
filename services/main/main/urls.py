@@ -19,10 +19,10 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',views.index, name='home'),
-    path('teachers/',views.teachers_list, name='teachers_list'),
-    path('rules/',views.rules_list, name='rules'),
-    path('emergency_plots/', views.emergencies, name='emergencies'),
-    path('design/',views.design_system, name='design_system'),
+    path('main/admin/', admin.site.urls),
+    path('main/',views.index, name='home'),
+    path('main/teachers/',views.teachers_list, name='teachers_list'),
+    path('main/rules/',views.rules_list, name='rules'),
+    path('main/emergency_plots/', views.emergencies, name='emergencies'),
+    path('main/design/',views.design_system, name='design_system'),
 ]
