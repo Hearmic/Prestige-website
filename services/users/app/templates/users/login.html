@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "users/base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">
@@ -20,11 +20,11 @@
       {% csrf_token %}
       <div class="input-box">
         <label>Username <span class="text-danger">*</span></label>
-        {{form.username}}
+        {{ form.username }}
       </div>
       <div class="input-box">
         <label>Password<span class="text-danger">*</span></label>
-        {{form.password}}
+        {{ form.password }}
       </div>
       <div class="input-box button">
         <input type="Submit" value="Войти">

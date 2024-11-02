@@ -53,6 +53,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     volumes:
       - .:/app
     depends_on:
@@ -68,6 +69,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/canteen_menu
     volumes:
       - .:/app
@@ -84,6 +86,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/exit_notes
     volumes:
       - .:/app
@@ -100,6 +103,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/knowledge_base
     volumes:
       - .:/app
@@ -116,6 +120,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/news
     volumes:
       - .:/app
@@ -133,6 +138,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/schedules/
     volumes:
       - .:/app
@@ -150,6 +156,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/suggestions
     depends_on:
       - db
@@ -164,6 +171,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG_STATE=${DEBUG_STATE}
+      - HTTP_HOST=${HTTP_HOST}
     build: ./services/users
     volumes:
       - .:/app

@@ -1,31 +1,32 @@
 
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.urls import reverse
 from django.contrib.auth import get_user_model, authenticate, login, logout
 
 from .models import User
 from .forms import LoginUserForm,UserCreateForm
 from rest_framework import viewsets
 from .serializers import UserSerializer
+import os 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('first_name')
     serializer_class = UserSerializer
 
 def login_user(request):
+    http_host = os.environ.get('HTTP_HOST')
     if request.method == 'POST':
-        form = LoginUserForm(request.POST)
-        if form.is_valid(): # проверка валидности формы
-            cd=form.cleaned_data # получение данных из полей формы
-            user = authenticate(request, username=cd['username'],password=cd['password'])   # проверка пользователя и пароля
-            if user and user.is_active:    # проверка активности пользователя
-                login(request, user)        # авторизация пользователя
-                return HttpResponseRedirect(reverse('main:home'))  # перенаправление на ссылку с именем "home" в облласти имен "main"
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            request.session['username'] = username
+            request.session.save()  
+            return redirect(f'http://{http_host}/main')
     else:
         form = LoginUserForm()
-        return render(request, 'users/try_again.html', {'form': form})
-    return render(request, 'users/login.html', {'form': form}) 
+        return render(request, 'users/login.html', {'form': form})
+    return render(request, 'users/try_again.html', {'form': form}) 
 
 def logout_user(request):
     logout(request)
