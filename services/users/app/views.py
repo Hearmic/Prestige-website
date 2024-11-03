@@ -6,10 +6,10 @@ from .models import User
 from .forms import LoginUserForm,UserCreateForm
 from rest_framework import viewsets
 from .serializers import UserSerializer
-import os 
+import os
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('first_name')
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 def login_user(request):
@@ -39,10 +39,11 @@ def register_user(request):
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
+            http_host = os.environ.get('HTTP_HOST')
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            return redirect('users:register')
+            return redirect(f'http://{http_host}/users/register')
         else:
             context = {'form': form, 'users': users}
             return render(request, 'users/register.html', context)

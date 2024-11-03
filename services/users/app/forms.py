@@ -23,5 +23,4 @@ class UserCreateForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['surname'].label = 'Отчество'
         self.fields['parents'].label = 'Родители'
-        self.fields['head_teacher'].label = 'Классный руководитель'
         self.fields['groups'].label = 'Группы/Роли'
