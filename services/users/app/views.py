@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 def login_user(request):
     http_host = os.environ.get('HTTP_HOST')
+    form = LoginUserForm()
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -24,7 +25,6 @@ def login_user(request):
             request.session.save()  
             return redirect(f'http://{http_host}/main')
     else:
-        form = LoginUserForm()
         return render(request, 'users/login.html', {'form': form})
     return render(request, 'users/try_again.html', {'form': form}) 
 

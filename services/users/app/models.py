@@ -1,6 +1,18 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.base_user import BaseUserManager
+
+class UserManager(BaseUserManager):
+    def create_superuser(self, email, password):
+        if password is None:
+            raise TypeError('Superusers must have a password.')
+        user = self.create_user(email, password)
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
+        return user
+    
 
 class User(AbstractUser):
     surname = models.CharField(max_length=50, blank=True, null=True)
@@ -19,9 +31,13 @@ class User(AbstractUser):
         blank=True,
         help_text='Отдельные права для конкретногот пользователя (не используются)',
     )
-        
+    objects = UserManager
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
     def __str__(self):
         return f"{self.last_name} {self.first_name}  {self.surname}"
+    
 
 class Grade(models.Model):
     grade_number = models.IntegerField()  # Класс (например, "6")

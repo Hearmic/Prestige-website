@@ -87,12 +87,12 @@ DATABASES = {
         'NAME': 'prestige_database',
         'USER': db_user,  
         'PASSWORD': db_password, 
-        'HOST': 'db',  
+        'HOST': 'users_db',  
         'PORT': 5432,  
-    }
+    },
 }
 
-
+AUTH_USER_MODEL = 'app.User'
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

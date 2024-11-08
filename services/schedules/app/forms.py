@@ -8,9 +8,8 @@ class LessonForm(forms.ModelForm):
         fields = '__all__'
     teacher_choice = forms.ChoiceField(
         label='Выберите учителя',
-        choices=[
-            (user['id'], user['first_name'],user['last_name'])
-            for user in get_all_users() if user['group'] == 'Учитель'],
+        choices=[(user['id'], user['first_name'],user['last_name'])
+        for user in get_all_users() if 'Учитель' in user['groups']],
         )
     
     lesson_type = forms.ChoiceField(

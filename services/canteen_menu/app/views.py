@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from datetime import date
 
         
-# Create your views here.
+
 def display_menu (request):
     today = date.today()
     try:
