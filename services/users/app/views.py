@@ -30,7 +30,8 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect ('users:login')# перенаправление на ссылку с именем "login" в облласти имен "users"
+    http_host = os.environ.get('HTTP_HOST')
+    return redirect (f'http://{http_host}/login')# перенаправление на ссылку с именем "login" в облласти имен "users"
 
 
 def register_user(request):

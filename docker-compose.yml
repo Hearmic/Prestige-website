@@ -194,6 +194,7 @@ services:
       - .:/app
     depends_on:
       - schedules_db
+      - users
     networks:
       - schedules-db-network
       - nginx-network
